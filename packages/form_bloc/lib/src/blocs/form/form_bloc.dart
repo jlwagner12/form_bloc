@@ -148,7 +148,7 @@ abstract class FormBloc<SuccessResponse, FailureResponse> extends Bloc<
       add(UpdateFormBlocStateIsValid(areAllFieldsValid));
 
   @override
-  void close() {
+  Future<void> close() async {
     _areAllFieldsValidSubscription?.cancel();
 
     _formBlocStateSubscription?.cancel();
@@ -157,7 +157,7 @@ abstract class FormBloc<SuccessResponse, FailureResponse> extends Bloc<
 
     _fieldBlocs?.forEach((fieldBloc) => fieldBloc?.close());
 
-    super.close();
+    await super.close();
   }
 
   @override
