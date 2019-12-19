@@ -109,13 +109,13 @@ abstract class FieldBlocBase<Value, Suggestion,
       _autoValidate ? isValidating ? false : true : false;
 
   @override
-  void close() {
+  Future<void> close() async {
     _selectedSuggestionSubject.close();
     _asyncValidatorsSubject.close();
     _asyncValidatorsSubscription.cancel();
     _revalidateFieldBlocsSubscription?.cancel();
 
-    super.close();
+    await super.close();
   }
 
   /// Set [value] to the `value` of the current state.
